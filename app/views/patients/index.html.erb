@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Patient Resume</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Middle name</th>
+      <th>Last name</th>
+      <th>Medical record number</th>
+      <th>Date of birth</th>
+      <th>Gender</th>
+      <th>Status</th>
+      <th>Location</th>
+      <th>Viewed Count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.First_name %></td>
+        <td><%= patient.Middle_name %></td>
+        <td><%= patient.Last_name %></td>
+        <td><%= patient.Medical_Record_number %></td>
+        <td><%= patient.Date_of_birth %></td>
+        <td><%= patient.Gender %></td>
+        <td><%= patient.Status %></td>
+	<td><%= patient.Location %></td>
+	<td><%= pluralize(patient.viewed_counts.count, '') %></td>
+	<td><%= button_to 'Show', viewed_counts_patient_path(patient) %></td>
+        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Patient', new_patient_path %>
